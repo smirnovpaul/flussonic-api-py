@@ -1,7 +1,9 @@
 # flussonic-api-py
 Flussonic client API for connection server.
 
-Active link http://erlyvideo.ru/doc
+Unofficial, created on the basis of the documentation.
+
+Active link for official project http://erlyvideo.ru/doc
 
 API:
 
@@ -9,4 +11,13 @@ API:
 * DVR
 * HTTP
 
-TODO Useful documents
+Documentation with Mkdocs (TODO):
+
+* API
+* Connection
+* More details
+
+TODO more details
+git clone https://github.com/smirnovpaul/flussonic-api-py.git
+cd flussonic-api-py
+pip install -r requirements.txt
