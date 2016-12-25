@@ -2,3 +2,5 @@
 mkdocs==0.16.0
 # API
 requests==2.7.0
+# MySQL-API
+MySQL-python

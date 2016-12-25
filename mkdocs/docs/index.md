@@ -1,17 +1,25 @@
-# Welcome to MkDocs
+# Welcome to Flussonic-api-py
+Flussonic client API for connection server.
 
-For full documentation visit [mkdocs.org](http://mkdocs.org).
+Unofficial, created on the basis of the documentation.
 
-## Commands
+[Active link for official project](http://erlyvideo.ru/doc)
 
-* `mkdocs new [dir-name]` - Create a new project.
-* `mkdocs serve` - Start the live-reloading docs server.
-* `mkdocs build` - Build the documentation site.
-* `mkdocs help` - Print this help message.
+##API:
 
-## Project layout
+* Database (Simple emulation MySQL);
+* DVR;
+* HTTP (Basic methods).
 
-    mkdocs.yml    # The configuration file.
-    docs/
-        index.md  # The documentation homepage.
-        ...       # Other markdown pages, images and other files.
+##Documentation with Mkdocs:
+
+* API;
+* Connection;
+* More details.
+
+##Install:
+
+* git clone https://github.com/smirnovpaul/flussonic-api-py.git
+* cd flussonic-api-py
+* pip install -r requirements.txt
+* use (don't forget to switch on logging)

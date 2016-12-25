@@ -1,12 +1,18 @@
 # -*- coding: utf-8 -*-
+import logging
 import requests
 
 from requests.auth import HTTPBasicAuth as Auth
 
-# todo http://erlyvideo.ru/doc/api/http
-# todo Correct connect with http_status response
+# Logger: from print to logging
+
 
 class HttpApi(object):
+    """
+    User and Password are data from Flussonic Server
+    (see to edit_auth, view_auth).
+    HTTP Basic auth.
+    """
     def __init__(self, user, password, url):
         self.auth = Auth(user, password)
         self.message = None
@@ -20,18 +26,30 @@ class HttpApi(object):
         except (requests.RequestException, requests.Timeout) as e:
             print('Error request {}: {}'.format(self.message, e))
             return None
+
         try:
+            # Only for stream_health
+            # TODO with PEP 8
+            if r.status_code == 424:
+                return False
             r.raise_for_status()
         except requests.HTTPError as e:
             print('Error request {}: {}'.format(self.message, e))
             return None
+
         try:
-            return r.json()
+            r.json()
         except ValueError as e:
             print('Error request {}: {}'.format(self.message, e))
             return None
+        else:
+            return r.json()
 
     def simple_method(self, api, message):
+        """
+        Simple basic method for API.
+        If need to create something quickly.
+        """
         self.api = api
         self.message = message
         return self._connect
@@ -65,7 +83,7 @@ class HttpApi(object):
 
     def stream_health(self, stream_name):
         self.api = 'stream_health/{}'.format(stream_name)
-        self.message = 'Stream quiality'
+        self.message = 'Stream quality'
         return self._connect
 
     @property

@@ -1,1 +1,7 @@
-site_name: My Docs
+site_name: Flussonic-Api-Py
+pages:
+    - Introduction: index.md
+    - MySQL-API: db.md
+    - DVR-API: dvr.md
+    - HTTP-API: http.md
+theme: readthedocs
