@@ -1,14 +1,13 @@
 # -*- coding: utf-8 -*-
-import logging
 import requests
 
-# Logger: from print to logging
-# TODO test to connect
+from .log import LOGGER
 
 
 class DvrApi(object):
     """
     Token is a simple method for check.
+
     http://flussonic.com/doc/dvr/api
     """
     def __init__(self, url, token, stream_name):
@@ -23,19 +22,19 @@ class DvrApi(object):
         try:
             r = requests.get(self.url, params=self.payload)
         except requests.RequestException as e:
-            print('Error request get: {}'.format(e))
+            LOGGER.error('Error request get: {}'.format(e))
             return None
 
         try:
             r.raise_for_status()
         except requests.HTTPError as e:
-            print('Error request status_code: {}'.format(e))
+            LOGGER.error('Error request status_code: {}'.format(e))
             return None
 
         try:
             response = r.json()
         except ValueError as e:
-            print('Error request json: {}'.format(e))
+            LOGGER.error('Error request json: {}'.format(e))
             return None
         else:
             return response

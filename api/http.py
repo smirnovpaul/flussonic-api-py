@@ -1,16 +1,15 @@
 # -*- coding: utf-8 -*-
-import logging
 import requests
 
+from .log import LOGGER
 from requests.auth import HTTPBasicAuth as Auth
-
-# Logger: from print to logging
 
 
 class HttpApi(object):
     """
     User and Password are data from Flussonic Server
     (see to edit_auth, view_auth).
+
     HTTP Basic auth.
     """
     def __init__(self, user, password, url):
@@ -24,24 +23,23 @@ class HttpApi(object):
         try:
             r = requests.get(''.join((self.url, self.api)), auth=self.auth)
         except (requests.RequestException, requests.Timeout) as e:
-            print('Error request {}: {}'.format(self.message, e))
+            LOGGER.error('Error request {}: {}'.format(self.message, e))
             return None
 
         try:
-            # Only for stream_health
-            # TODO with PEP 8
+            # TODO for stream_health
             if r.status_code == 424:
                 # stream is dead
                 return False
             r.raise_for_status()
         except requests.HTTPError as e:
-            print('Error request {}: {}'.format(self.message, e))
+            LOGGER.error('Error request {}: {}'.format(self.message, e))
             return None
 
         try:
             response = r.json()
         except ValueError as e:
-            print('Error request {}: {}'.format(self.message, e))
+            LOGGER.error('Error request {}: {}'.format(self.message, e))
             return None
         else:
             return response
@@ -49,6 +47,7 @@ class HttpApi(object):
     def simple_method(self, api, message):
         """
         Simple basic method for API.
+
         If need to create something quickly.
         """
         self.api = api
