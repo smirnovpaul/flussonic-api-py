@@ -5,6 +5,12 @@ Unofficial, created on the basis of the documentation.
 
 Active link of [official project](http://erlyvideo.ru/doc)
 
+### Frameworks/language:
+
+* **Python 2.7.x/3.x**
+* **Django > 1.6**
+* **Flask > 0.8**
+
 ### API:
 
 * Database (Simple emulation like a MySQL);

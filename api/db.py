@@ -1,11 +1,10 @@
 # -*- coding: utf-8 -*-
-import logging
 import MySQLdb
 
-# Logger: from print to logging
+from .log import LOGGER
 
 
-def dictfetchall(cursor):
+def dict_fetchall(cursor):
     """
     Return all rows from a cursor as a dict.
     """
@@ -33,18 +32,17 @@ class DataBaseApi(object):
                 db=self.db, charset='utf8'
             )
         except Exception as ex:
-            print('Connection error with host {}, db {} : {2}'.format(self.host, self.db, ex))
+            LOGGER.error('Connection error with host {}, db {} : {2}'.format(self.host, self.db, ex))
 
     def _get_query(self, query, args):
-
         result = None
         try:
             self._cursor = self._db.cursor()
             self._cursor.execute(query, args)
-            result = dictfetchall(self._cursor)
+            result = dict_fetchall(self._cursor)
             self._cursor.close()
         except Exception as ex:
-            print('Get query error: query {}; args{}'.format(query, args,  ex))
+            LOGGER.error('Get query error: query {}; args{}'.format(query, args,  ex))
             return result
         else:
             return result
@@ -52,6 +50,7 @@ class DataBaseApi(object):
     def select(self, stream_name, time_for_utc):
         """
         Select all data from table dvr_status.
+
         http://erlyvideo.ru/doc/api/sql
 
         DON`T FORGET: name and utc are using only together.
