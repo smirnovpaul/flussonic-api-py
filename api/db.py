@@ -6,7 +6,9 @@ import MySQLdb
 
 
 def dictfetchall(cursor):
-    """Return all rows from a cursor as a dict"""
+    """
+    Return all rows from a cursor as a dict.
+    """
     columns = [col[0] for col in cursor.description]
     return [
         dict(zip(columns, row))
@@ -51,6 +53,9 @@ class DataBaseApi(object):
         """
         Select all data from table dvr_status.
         http://erlyvideo.ru/doc/api/sql
+
+        DON`T FORGET: name and utc are using only together.
+
         ARGUMENTS:
             :param stream_name:
             :param time_for_utc:

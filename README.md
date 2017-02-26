@@ -5,22 +5,28 @@ Unofficial, created on the basis of the documentation.
 
 Active link for official project http://erlyvideo.ru/doc
 
-API:
+### API:
 
-* Database (Simple emulation MySQL);
+* Database (Simple emulation like a MySQL);
 * DVR;
-* HTTP (Basic methods).
+* HTTP (Methods of documentation).
 
-Documentation with Mkdocs (TODO):
+### Documentation with Mkdocs (TODOS):
 
 * API;
 * Connection;
 * More details.
 
-Install:
+### Install:
 
-* git clone https://github.com/smirnovpaul/flussonic-api-py.git
-* cd flussonic-api-py
-* pip install -r requirements.txt
-* use (don't forget to switch on logging)
+```sh
+git clone https://github.com/smirnovpaul/flussonic-api-py.git
+cd flussonic-api-py
+pip install -r requirements.txt
+```
 
+**Don't forget** to switch on logging
+
+### License:
+----
+MIT

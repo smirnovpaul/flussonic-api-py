@@ -31,6 +31,7 @@ class HttpApi(object):
             # Only for stream_health
             # TODO with PEP 8
             if r.status_code == 424:
+                # stream is dead
                 return False
             r.raise_for_status()
         except requests.HTTPError as e:
@@ -38,12 +39,12 @@ class HttpApi(object):
             return None
 
         try:
-            r.json()
+            response = r.json()
         except ValueError as e:
             print('Error request {}: {}'.format(self.message, e))
             return None
         else:
-            return r.json()
+            return response
 
     def simple_method(self, api, message):
         """
